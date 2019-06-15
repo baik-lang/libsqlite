@@ -1,0 +1,4 @@
+isi SQlite = {
+  "konek" : ffi('int connect()','./lib.inadl'),
+  "keluar" : ffi('int close()','./lib.inadl'),
+}
