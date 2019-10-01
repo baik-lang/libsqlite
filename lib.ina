@@ -1,3 +1,4 @@
 isi sqlite = {
-    "koneksi" : ffi('void bsqlite(void)','./target/debug/libsqlite.dylib')
+    "koneksi" : ffi('void bsqlite(void)','./target/debug/libsqlite.dylib'),
+    "echo" : ffi('char* echo(char*)','./target/debug/libsqlite.dylib')
 };

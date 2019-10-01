@@ -1,3 +1,5 @@
 muat('./lib.ina');
 
 sqlite.koneksi();
+
+tulis(sqlite.echo("halo"))

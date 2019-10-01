@@ -1,17 +1,17 @@
 extern crate sqlite;
-use sqlite::{Connection, OpenFlags, State, Type, Value};
+//use sqlite::{Connection, OpenFlags, State, Type, Value};
 #[no_mangle]
-pub extern fn double_input(input: i32) -> i32 {
-    input * 2
+pub extern fn echo(echo: &str) -> &str {
+    echo
 }
 
 #[no_mangle]
 pub extern fn bsqlite(){
-    let connection = sqlite::open("test.db").unwrap();
+    let connection = sqlite::open(":memory:").unwrap();
     connection
         .execute(
             "
-            CREATE TABLE users (name TEXT, age INTEGER);
+            CREATE TABLE IF NOT EXISTS users (name TEXT, age INTEGER);
             INSERT INTO users VALUES ('Alice', 42);
             INSERT INTO users VALUES ('Bob', 69);
             ",
