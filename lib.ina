@@ -1,4 +1,3 @@
-isi SQlite = {
-  "konek" : ffi('int connect()','./lib.inadl'),
-  "keluar" : ffi('int close()','./lib.inadl'),
-}
+isi sqlite = {
+    "koneksi" : ffi('void bsqlite(void)','./target/debug/libsqlite.dylib')
+};

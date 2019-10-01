@@ -1,0 +1,16 @@
+[package]
+name = "sqlite"
+version = "0.1.0"
+authors = ["Ibnu Yahya <anak10thn@gmail.com>"]
+
+[dependencies]
+sqlite = "0.25.0"
+
+[[bin]]
+name = "sqlite"
+doc = false
+path = "src/lib.rs"
+
+[lib]
+name = "sqlite"
+crate-type = ["dylib"]
