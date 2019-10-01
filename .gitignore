@@ -9,3 +9,4 @@ elf/*
 *.o
 Cargo.lock
 target
+test.db

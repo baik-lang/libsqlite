@@ -7,7 +7,7 @@ pub extern fn double_input(input: i32) -> i32 {
 
 #[no_mangle]
 pub extern fn bsqlite(){
-    let connection = sqlite::open(":memory:").unwrap();
+    let connection = sqlite::open("test.db").unwrap();
     connection
         .execute(
             "
