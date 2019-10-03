@@ -6,8 +6,8 @@ isi Sqlite = {
         Sqlite.data = data(dt);
     },
     "exec" : fungsi(query){
-        isi exec = ffi('void execute(char*,char*)','./target/debug/libsqlite.dylib');
+        isi exec = ffi('char* execute(char*,char*)','./target/debug/libsqlite.dylib');
         isi data = Sqlite.data;
-        exec(data,query);
+        balik exec(data,query);
     }
 };

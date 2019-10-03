@@ -1,8 +1,10 @@
 extern crate sqlite;
 extern crate libc;
+extern crate serde_json;
 //use sqlite::{Connection, OpenFlags, State, Type, Value};
 use libc::{c_char};
 use std::ffi::CStr;
+use serde_json::{Value, Map};
 
 #[no_mangle]
 pub extern fn koneksi(koneksi: &str) -> &str{
@@ -10,7 +12,8 @@ pub extern fn koneksi(koneksi: &str) -> &str{
 }
 
 #[no_mangle]
-pub extern fn execute(koneksi: *const c_char, query: *const c_char) {
+pub extern fn execute(koneksi: *const c_char, query: *const c_char) ->  &'static str{
+
     let koneksi = unsafe {
         assert!(!koneksi.is_null());
         CStr::from_ptr(koneksi)
@@ -30,16 +33,22 @@ pub extern fn execute(koneksi: *const c_char, query: *const c_char) {
             query.to_str().unwrap(),
         )
         .unwrap();
+        return "1"
     }
     else{
+        let mut vec = Vec::new();
         connection
         .iterate(query.to_str().unwrap(), |pairs| {
+            let mut inner_map = Map::new();
             for &(column, value) in pairs.iter() {
-                println!("{} = {}", column, value.unwrap());
+                inner_map.insert(column.to_string(), Value::String(value.unwrap().to_string()));
             }
+            vec.push(inner_map);
             true
         })
         .unwrap();
+        let result = serde_json::to_string(&vec).unwrap();
+        return Box::leak(result.into_boxed_str());
     }
 }
 
