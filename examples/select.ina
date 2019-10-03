@@ -1,0 +1,4 @@
+muat('./lib.ina');
+
+Sqlite.koneksi("test.db");
+Sqlite.exec("SELECT * FROM users WHERE age > 50");

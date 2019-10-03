@@ -1,0 +1,6 @@
+muat('./lib.ina');
+
+Sqlite.koneksi("test.db");
+Sqlite.exec("CREATE TABLE IF NOT EXISTS users (name TEXT, age INTEGER)");
+Sqlite.exec("INSERT INTO users VALUES ('Alice', 42)");
+Sqlite.exec("INSERT INTO users VALUES ('Bob', 69)");
