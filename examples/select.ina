@@ -4,4 +4,4 @@ Sqlite.koneksi("test.db");
 //Sqlite.exec("SELECT * FROM users WHERE age > 50");
 
 isi data = Sqlite.exec("SELECT * FROM users");
-tulis(data);
+tulis(JSON.stringify(data));
