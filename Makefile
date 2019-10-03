@@ -3,5 +3,6 @@ build:
 	cargo build
 
 clean:
-	rm lib.inadl
-	rm -rf target Cargo.lock
+	rm test.db
+	#rm lib.inadl
+	#rm -rf target Cargo.lock

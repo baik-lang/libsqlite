@@ -1,4 +1,13 @@
-isi sqlite = {
-    "koneksi" : ffi('void bsqlite(void)','./target/debug/libsqlite.dylib'),
-    "echo" : ffi('char* echo(char*)','./target/debug/libsqlite.dylib')
+isi sqlite_data;
+isi Sqlite = {
+    "data" : "baik.db",
+    "koneksi" : fungsi(dt){
+        isi data = ffi('char* koneksi(char*)','./target/debug/libsqlite.dylib');
+        Sqlite.data = data(dt);
+    },
+    "exec" : fungsi(query){
+        isi exec = ffi('void execute(char*,char*)','./target/debug/libsqlite.dylib');
+        isi data = Sqlite.data;
+        exec(data,query);
+    }
 };
