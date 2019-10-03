@@ -8,6 +8,6 @@ isi Sqlite = {
     "exec" : fungsi(query){
         isi exec = ffi('char* execute(char*,char*)','./target/debug/libsqlite.dylib');
         isi data = Sqlite.data;
-        balik exec(data,query);
+        balik JSON.parse(exec(data,query));
     }
 };
