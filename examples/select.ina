@@ -1,7 +1,7 @@
 muat('./lib.ina');
 Sqlite.koneksi("test.db");
 
-//Sqlite.exec("SELECT * FROM users WHERE age > 50");
+//Sqlite.eksek("SELECT * FROM users WHERE age > 50");
 
-isi data = Sqlite.exec("SELECT * FROM users");
+isi data = Sqlite.eksek("SELECT * FROM users");
 tulis(JSON.stringify(data));
