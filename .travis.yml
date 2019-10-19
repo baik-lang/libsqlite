@@ -4,9 +4,10 @@ os:
 - osx
 rust:
 - nightly
-jobs:
-  fast_finish: true
-scripts:
+# jobs:
+#   fast_finish: true
+script:
+  - cargo build --verbose --all
   - ls -lsa target/debug
 # env:
 #   global:
