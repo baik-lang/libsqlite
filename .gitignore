@@ -10,4 +10,4 @@ elf/*
 Cargo.lock
 target
 test.db
-lib-*.inadyl
+lib*.inadyl
