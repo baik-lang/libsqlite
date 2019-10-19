@@ -9,8 +9,8 @@ rust:
 script:
   - cargo build --verbose --all
   - ls -lsa target/debug
-  - if [ "$TRAVIS_OS_NAME" = "osx" ]; then mv target/debug/BAKUL_NAME.so lib-$TRAVIS_OS_NAME.inadyl ; fi
-  - if [ "$TRAVIS_OS_NAME" = "linux" ]; then mv target/debug/BAKUL_NAME.dylib lib-$TRAVIS_OS_NAME.inadyl ; fi
+  - if [ "$TRAVIS_OS_NAME" = "osx" ]; then mv target/debug/BAKUL_NAME.dylib lib-$TRAVIS_OS_NAME.inadyl ; fi
+  - if [ "$TRAVIS_OS_NAME" = "linux" ]; then mv target/debug/BAKUL_NAME.so lib-$TRAVIS_OS_NAME.inadyl ; fi
 env:
     jobs:
       - BAKUL_NAME=libsqlite
