@@ -9,7 +9,11 @@ rust:
 script:
   - cargo build --verbose --all
   - ls -lsa target/debug
-# env:
+  - if [ "$TRAVIS_OS_NAME" = "osx" ]; then mv target/debug/BAKUL_NAME.so lib-$TRAVIS_OS_NAME.inadyl ; fi
+  - if [ "$TRAVIS_OS_NAME" = "linux" ]; then mv target/debug/BAKUL_NAME.dylib lib-$TRAVIS_OS_NAME.inadyl ; fi
+env:
+    jobs:
+      - BAKUL_NAME=libsqlite
 #   global:
 #     secure: bMmozMWhe8Of1COcxLW24P8oYeNxb8JGN6AHajbCm7qLOTmZWI6mw1uSUPHxDIXVSowd/9MdcjkwTeDL6OIFoifQUt7CAsPCuPiLcgluE4oHRs2YLjQl+8HAxPLowk4W6A7xFdhU4syM7L5Usq43JfIJk9wqGmK8nH8+bM0faJgK9vvTEN1LjCYh/Fj8zeAofK/5i8Z/uCgBJ4P4aW7++Ym3+YT3bCXvnqx3rjynVotkeUIAt2qNfCKJBAiEEThfForC1BEzBUwUYYDK4u3Ty+AvoqdfkpUr4xejgoWJCDxa66C9s/T2WgWmBBHwVYCwwL/Z2qPuFOLDH8Iz8YZ0v6FTACSLFaTyt7Vl8Yx7StR3g212rsORRC2nW7T+kLcN2pbSQQuZxKEoXzcQLX5dpLmfkBldKmNafE9tBvA0bApsn0MXZVfnB8GN4jxa32HSC4BeOxx8iY14jyrnGmKMMGhcaqb3NyunCzw4g0gLwNtUICsafI9LULEAOkCRQ9LMH6JY71V33dBtPfghRp5QdCk6a2sBycDvdYSQA2FcY9wAL0ix1DY2vXtbUvX+WK9WBI3u5n5rkm1vO/fzZWhbjwSQqLK1EIp+hEeoclHduRUrUJUZfzJmFEv7DZioJ4PCCRBeCgQKAngnNod7dCUmSfWrNowEUTY39JbkFjZSnPE=
 
@@ -18,8 +22,10 @@ script:
 #   - git config --local user.email "anak10thn@gmail.com"
 #   - export TRAVIS_TAG=${TRAVIS_TAG:-$(date +'%Y%m%d%H%M%S')-$(git log --format=%h -1)}
 #   - git tag $TRAVIS_TAG
-# deploy:
-#   provider: releases
-#   api_key: $GITHUB_TOKEN
-#   file: "FILE TO UPLOAD"
-#   skip_cleanup: true
+deploy:
+  provider: releases
+  api_key: $GITHUB_TOKEN
+  file: lib-$TRAVIS_OS_NAME.inadyl
+  skip_cleanup: true
+  on:
+    tags: true
