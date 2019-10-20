@@ -1,4 +1,5 @@
 language: rust
+sudo: required
 # os:
 # - linux
 # - osx
@@ -15,7 +16,7 @@ rust:
 - nightly
 
 script:
-  - sudo su
+  - sudo su -
   - cargo build --verbose --all
   - ls -lsa target/debug
   - if [ "$TRAVIS_OS_NAME" = "osx" ]; then mv target/debug/${BAKUL_NAME}.dylib lib-$TRAVIS_OS_NAME-`uname -m`.inadyl ; fi
